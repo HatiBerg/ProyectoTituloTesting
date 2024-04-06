@@ -58,44 +58,8 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown("up") && cantJump)
         {
             cantJump = false;
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 200f));
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 220f));
             gameObject.GetComponent<Animator>().SetTrigger("jumping");
-        }
-    }
-
-    // Función para comprobar si hay una caja en frente del jugador
-    bool isBoxInFrontOfPlayer()
-    {
-        // Obtener la posición del jugador
-        Vector3 playerPosition = Player.transform.position;
-        // Obtener la dirección en la que el jugador está mirando
-        Vector3 playerDirection = Player.transform.forward;
-        // Raycast desde la posición del jugador en la dirección en la que está mirando
-        RaycastHit hit;
-        if (Physics.Raycast(playerPosition, playerDirection, out hit, distance))
-        {
-            // Si el Raycast choca con una caja, devolver true
-            if (hit.collider.gameObject.tag == "Box")
-            {
-                return true;
-            }
-        }
-        // De lo contrario, devolver false
-        return false;
-    }
-
-    // Función para mover la caja
-    void MoveBox()
-    {
-        // Si hay una caja en frente del jugador
-        if (isBoxInFrontOfPlayer())
-        {
-            // Obtener la posición de la caja
-            Vector3 boxPosition = box.transform.position;
-            // Calcular la dirección en la que la caja debe moverse
-            Vector3 moveDirection = player.transform.forward;
-            // Mover la caja en la dirección calculada
-            box.transform.position += moveDirection * Time.deltaTime;
         }
     }
 }
