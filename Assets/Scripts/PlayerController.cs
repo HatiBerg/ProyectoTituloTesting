@@ -32,30 +32,30 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Movement()
     {
-        if (Input.GetKey("left"))
+        if (Input.GetKey("a"))
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-500f * Time.deltaTime, 0));
             gameObject.GetComponent<Animator>().SetBool("moving", true);
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        if (Input.GetKey("right"))
+        if (Input.GetKey("d"))
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(500f * Time.deltaTime, 0));
             gameObject.GetComponent<Animator>().SetBool("moving", true);
             gameObject.GetComponent<SpriteRenderer>().flipX = false;
         }
-        if (!Input.GetKey("left") && !Input.GetKey("right"))
+        if (!Input.GetKey("a") && !Input.GetKey("d"))
         {
             gameObject.GetComponent<Animator>().SetBool("moving", false);
         }
 
-        if (!Input.GetKey("up"))
+        if (!Input.GetKey("w"))
         {
             gameObject.GetComponent<Animator>().SetTrigger("jumping");
         }
 
-        if (Input.GetKeyDown("up") && cantJump)
+        if (Input.GetKeyDown("w") && cantJump)
         {
             cantJump = false;
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 220f));
