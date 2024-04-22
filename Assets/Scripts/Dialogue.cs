@@ -7,13 +7,15 @@ public class Dialogue : MonoBehaviour
 {
     [SerializeField] private GameObject actionMark;
     [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TMP_Text npcNameText;
+    [SerializeField] private TMP_Text dialogueNameText;
     [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private bool doesPlayerSpeakFirst;
     [SerializeField] private string npcName;
     [SerializeField, TextArea(3,4)] private string[] dialogueLines;
 
     private bool isPlayerInRange;
     private bool didDialogueStart;
+    private bool isPlayerSelectingAChoice;
     private int lineIndex;
 
     void Update()
@@ -40,7 +42,7 @@ public class Dialogue : MonoBehaviour
         dialoguePanel.SetActive(true);
         actionMark.SetActive(false);
         lineIndex = 0;
-        npcNameText.text = npcName;
+        SpeakOrder();
         dialogueText.text = dialogueLines[lineIndex];
     }
 
@@ -49,6 +51,7 @@ public class Dialogue : MonoBehaviour
         lineIndex++;
         if (lineIndex < dialogueLines.Length)
         {
+            SpeakOrder();
             dialogueText.text = dialogueLines[lineIndex];
         }
         else
@@ -59,6 +62,20 @@ public class Dialogue : MonoBehaviour
             didDialogueStart = false;
             dialoguePanel.SetActive(false);
             actionMark.SetActive(true);
+        }
+    }
+
+    private void SpeakOrder()
+    {
+        if (!doesPlayerSpeakFirst)
+        {
+            dialogueNameText.text = npcName;
+            doesPlayerSpeakFirst = true;
+        }
+        else
+        {
+            dialogueNameText.text = "Player";
+            doesPlayerSpeakFirst = false;
         }
     }
 
