@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Floor
   - Health
+  - NPC
+  - Suspicion
   layers:
   - Default
   - TransparentFX
@@ -51,6 +53,9 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 2393190061
+    locked: 0
+  - name: NPC
+    uniqueID: 1349285301
     locked: 0
   - name: Player
     uniqueID: 4084385385
