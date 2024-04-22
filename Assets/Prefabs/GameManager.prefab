@@ -45,5 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  suspicion: {fileID: 0}
   actualHealth: 100
   maxHealth: 100
+  suspicionLevel: 100

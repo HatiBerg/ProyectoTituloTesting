@@ -102,8 +102,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.22
-  m_LinearDrag: 2.1
+  m_Mass: 0.1
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -234,10 +234,9 @@ MonoBehaviour:
   dialoguePanel: {fileID: 0}
   npcNameText: {fileID: 0}
   dialogueText: {fileID: 0}
-  npcName: NPC Test
+  npcName: 
   dialogueLines:
-  - Hola, me llamo "NPC Test"
-  - "Este di\xE1logo es una prueba para comprobar que funcione bien"
+  - 
 --- !u!1 &8417633563676247890
 GameObject:
   m_ObjectHideFlags: 0
