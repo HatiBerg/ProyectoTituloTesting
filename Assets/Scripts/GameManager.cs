@@ -21,4 +21,12 @@ public class GameManager : MonoBehaviour
         healthBar.fillAmount = actualHealth / maxHealth;
         suspicion.text = "Sospecha: " + suspicionLevel + "%";
     }
+
+    public void IncreaseSuspicion(int increaseLevel)
+    {
+        if (suspicionLevel < 100)
+        {
+            suspicionLevel = suspicionLevel + increaseLevel;
+        }
+    }
 }
