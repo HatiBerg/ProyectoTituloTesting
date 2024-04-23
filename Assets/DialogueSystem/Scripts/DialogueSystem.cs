@@ -62,6 +62,7 @@ public class DialogueSystem : MonoBehaviour
             didDialogueStart = false;
             dialoguePanel.SetActive(false);
             actionMark.SetActive(true);
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().IncreaseSuspicion(10);
         }
     }
 
