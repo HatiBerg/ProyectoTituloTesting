@@ -1,0 +1,72 @@
+using JetBrains.Annotations;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DialogueManager : MonoBehaviour
+{
+    public static DialogueManager instance { get; private set; }
+    [SerializeField] private DialogueUI diaUI;
+    [SerializeField] private GameObject player;
+
+    public QuestionController questionController;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        diaUI = FindObjectOfType<DialogueUI>();
+        questionController = FindObjectOfType<QuestionController>();
+    }
+
+
+    private void Start()
+    {
+        UnlockPlayerController(false);
+    }
+
+    public void UnlockPlayerController(bool locked)
+    {
+        if (!locked)
+        {
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled = true;
+        }
+        else 
+        {
+            GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+            GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled = false;
+            GameObject.FindWithTag("Player").GetComponent<Animator>().SetBool("moving", false);
+        }
+    }
+
+    public void setDialogue(Dialogue dialog)
+    {
+        diaUI.dialogue = dialog;
+        diaUI.lineIndex = 0;
+        diaUI.UpdateText(0);
+        if (dialog.finalized && !dialog.reuse)
+        {
+            diaUI.dialogue = dialog;
+            diaUI.lineIndex = dialog.dialogues.Length;
+            diaUI.UpdateText(1);
+        }
+    }
+    
+    public void ChangeReuseStatus(Dialogue dialog, bool reuseStatus)
+    {
+        dialog.reuse = reuseStatus;
+    }
+    public void ChangeUnlockedStatus(Dialogue dialog, bool unlockedStatus)
+    {
+        dialog.unlocked = unlockedStatus;
+    }
+}
