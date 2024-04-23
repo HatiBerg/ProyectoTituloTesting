@@ -48,6 +48,6 @@ public class QuestionController : MonoBehaviour
 
     public void giveButtomFunction(Dialogue dialog)
     {
-        DialogueManager.instance.setDialogue(dialog);
+        DialogueManager.instance.SetDialogue(dialog);
     }
 }

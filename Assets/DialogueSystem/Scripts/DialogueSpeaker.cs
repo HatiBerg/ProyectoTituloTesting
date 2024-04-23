@@ -4,15 +4,82 @@ using UnityEngine;
 
 public class DialogueSpeaker : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public List<Dialogue> availableDialogues = new List<Dialogue>();
+    private int dialogIndex = 0;
+    public int dialogLineIndex = 0;
+
     void Start()
     {
+        dialogIndex = 0;
+        dialogLineIndex = 0;
         
+        foreach (var dialog in availableDialogues)
+        {
+            dialog.finalized = false;
+            var q = dialog.question;
+            if (q != null)
+            {
+                foreach (var option in q.choices)
+                {
+                    option.answer.finalized = false;
+                }
+            }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerStay2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        {
+            Talk();
+        }
+    }
+
+    public void Talk()
+    {
+        if (dialogIndex <= availableDialogues.Count - 1)
+        {
+            if (availableDialogues[dialogIndex].unlocked)
+            {
+                if (availableDialogues[dialogIndex].finalized)
+                {
+                    if (UpdateDialog())
+                    {
+                        DialogueManager.instance.UnlockPlayerController(true);
+                        DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex]);
+                    }
+                    DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex]);
+                    return;
+                }
+                DialogueManager.instance.UnlockPlayerController(true);
+                DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex]);
+            }
+            else
+            {
+                DialogueManager.instance.UnlockPlayerController(false);
+            }
+        }
+        else
+        {
+            DialogueManager.instance.UnlockPlayerController(false);
+        }
+    }
+
+    bool UpdateDialog()
+    {
+        if (!availableDialogues[dialogIndex].reuse)
+            if (dialogIndex < availableDialogues.Count -1)
+            {
+                dialogIndex++;
+                return true;
+            }
+            else
+            {
+                return true;
+            }
+        else
+        {
+            return true;
+        }
     }
 }

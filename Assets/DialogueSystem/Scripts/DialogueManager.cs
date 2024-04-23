@@ -32,9 +32,10 @@ public class DialogueManager : MonoBehaviour
         UnlockPlayerController(false);
     }
 
-    public void UnlockPlayerController(bool locked)
+    public void UnlockPlayerController(bool unlocked)
     {
-        if (!locked)
+        diaUI.gameObject.SetActive(unlocked);
+        if (!unlocked)
         {
             GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -48,7 +49,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void setDialogue(Dialogue dialog)
+    public void SetDialogue(Dialogue dialog)
     {
         diaUI.dialogue = dialog;
         diaUI.lineIndex = 0;
