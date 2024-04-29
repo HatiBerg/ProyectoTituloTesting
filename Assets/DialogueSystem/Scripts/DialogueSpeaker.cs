@@ -4,32 +4,24 @@ using UnityEngine;
 
 public class DialogueSpeaker : MonoBehaviour
 {
+    [SerializeField] private GameObject actionMark;
+    private DialogueUI diaUI;
     public List<Dialogue> availableDialogues = new List<Dialogue>();
     [SerializeField] private int dialogIndex = 0;
     public int dialogLineIndex = 0;
+    private bool isPlayerInRange;
 
     void Start()
     {
+        actionMark.SetActive(false);
+        diaUI = GameObject.FindObjectOfType<DialogueUI>();
+
         dialogIndex = 0;
         dialogLineIndex = 0;
-        
-        foreach (var dialog in availableDialogues)
-        {
-            dialog.finalized = false;
-            var q = dialog.question;
-            if (q != null)
-            {
-                foreach (var option in q.choices)
-                {
-                    option.answer.finalized = false;
-                }
-            }
-        }
     }
-
-    private void OnTriggerStay2D(Collider2D other)
+    private void Update()
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             Talk();
         }
@@ -80,6 +72,26 @@ public class DialogueSpeaker : MonoBehaviour
         else
         {
             return true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isPlayerInRange = true;
+            actionMark.SetActive(true);
+            Debug.Log("Diálogo disponible");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isPlayerInRange = false;
+            actionMark.SetActive(false);
+            Debug.Log("Diálogo no disponible");
         }
     }
 }

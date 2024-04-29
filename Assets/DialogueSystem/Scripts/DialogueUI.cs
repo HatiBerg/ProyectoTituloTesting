@@ -19,6 +19,14 @@ public class DialogueUI : MonoBehaviour
         questionContainer.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UpdateText(1);
+        }
+    }
+
     public void UpdateText(int state)
     {
         dialogueContainer.SetActive(true);

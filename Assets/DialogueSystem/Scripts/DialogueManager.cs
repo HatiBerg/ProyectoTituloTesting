@@ -7,7 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance { get; private set; }
     public static DialogueSpeaker actualSpeaker;
-    [SerializeField] private DialogueUI diaUI;
+    [SerializeField] public DialogueUI diaUI;
     [SerializeField] private GameObject player;
 
     public QuestionController questionController;
@@ -29,8 +29,9 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+
         UnlockPlayerController(false);
-        player.GetComponent<DialogueSpeaker>().Talk();
+        //player.GetComponent<DialogueSpeaker>().Talk();
     }
 
     public void UnlockPlayerController(bool unlocked)
