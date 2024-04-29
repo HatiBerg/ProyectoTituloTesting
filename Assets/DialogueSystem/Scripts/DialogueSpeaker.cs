@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogueSpeaker : MonoBehaviour
 {
     public List<Dialogue> availableDialogues = new List<Dialogue>();
-    private int dialogIndex = 0;
+    [SerializeField] private int dialogIndex = 0;
     public int dialogLineIndex = 0;
 
     void Start()
@@ -46,13 +46,13 @@ public class DialogueSpeaker : MonoBehaviour
                     if (UpdateDialog())
                     {
                         DialogueManager.instance.UnlockPlayerController(true);
-                        DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex]);
+                        DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex], this);
                     }
-                    DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex]);
+                    DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex], this);
                     return;
                 }
                 DialogueManager.instance.UnlockPlayerController(true);
-                DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex]);
+                DialogueManager.instance.SetDialogue(availableDialogues[dialogIndex], this);
             }
             else
             {
@@ -75,7 +75,7 @@ public class DialogueSpeaker : MonoBehaviour
             }
             else
             {
-                return true;
+                return false;
             }
         else
         {

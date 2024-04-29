@@ -12,8 +12,6 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
 
     public int lineIndex = 0;
-    private bool isPlayerInRange;
-    private bool didDialogueStart;
 
     void Start()
     {
@@ -43,16 +41,23 @@ public class DialogueUI : MonoBehaviour
                 else
                 {
                     lineIndex = 0;
+                    DialogueManager.actualSpeaker.dialogLineIndex = 0;
                     dialogue.finalized = true;
                     if (dialogue.question != null)
                     {
                         dialogueContainer.SetActive(false);
                         questionContainer.SetActive(true);
-                        var ask = dialogue.question;
-                        DialogueManager.instance.questionController.activeDialogue(ask.choices.Length, ask.question, ask.choices);
+                        var q = dialogue.question;
+                        DialogueManager.instance.questionController.activeDialogue(q.choices.Length, q.question, q.choices);
                         return;
                     }
+                    DialogueManager.instance.UnlockPlayerController(false);
+                    return;
                 }
+                DialogueManager.actualSpeaker.dialogLineIndex = lineIndex;
+                break;
+            default:
+                Debug.LogWarning("UpdateText ERROR");
                 break;
         }
     }

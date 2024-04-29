@@ -1,0 +1,36 @@
+﻿title: Soldier
+tags:
+position: -40,0
+---
+Soldado: Buenos días, señor. He venido a recaudar los impuestos del Duque para este mes.
+Wat: ¿Impuestos? Pero si ya pagué los impuestos al principio del año.
+Soldado: El Duque ha decidido aumentar los impuestos debido a la reciente guerra. Todos los ciudadanos deben contribuir al esfuerzo bélico.
+Wat: ¡Pero esto es injusto! Mi negocio apenas está sobreviviendo, y no puedo pagar más impuestos.
+Soldado: ¿Injusto? ¡Esto es lo que manda el duque! No tienes otra opción más que pagar.
+-> Pagar el impuesto excesivo.
+    <<jump PayTaxes>>
+-> No pagar el impuesto excesivo.
+    <<jump NotPayTaxes>>
+-> Intentar convencerlo.
+    <<jump TryToConvince>>
+===
+title: PayTaxes
+position: -238,347
+---
+Wat: (Suspirando) Está bien, aquí tiene el dinero.
+Soldado: Perfecto. Puedes volver a tu trabajo.
+===
+title: NotPayTaxes
+position: 5,347
+---
+Wat: Lo siento, pero no pienso pagar estos impuestos. Son demasiado altos.
+Soldado: (Furioso) ¡¿Qué?! ¿Me estás desafiando? ¡Te arrepentirás de esto! (Se abalanza sobre ti y comienza una pelea.)
+===
+title: TryToConvince
+position: 269,344
+---
+Wat: Por favor, le pido que me escuche. No puedo pagar estos impuestos ahora mismo. Mi negocio está pasando por un mal momento.
+Soldado: ¡Más excusas! Todos los comerciantes dicen lo mismo.
+Wat: Le prometo que le pagaré el doble de la cantidad que me pide, pero necesito un poco de tiempo. Déjeme unos meses para recuperarme, y luego le daré el dinero sin problemas.
+Soldado: Está bien. Te daré una oportunidad. Pero si me engañas, te arrepentirás. (Se marcha de la tienda.)
+===

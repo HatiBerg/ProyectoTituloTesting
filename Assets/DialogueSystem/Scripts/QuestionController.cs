@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 public class QuestionController : MonoBehaviour
 {
-    [SerializeField] private GameManager buttomPref;
+    [SerializeField] private GameObject buttonPrefab;
     [SerializeField] private TMP_Text questionText;
     [SerializeField] private Transform choicesContainer;
     private List<UnityEngine.UI.Button> poolButtons = new List<UnityEngine.UI.Button>();
@@ -38,7 +38,7 @@ public class QuestionController : MonoBehaviour
             int remainingAmount = (amout - poolButtons.Count);
             for (int i = 0; i < remainingAmount; i++)
             {
-                var newButtom = Instantiate(buttomPref, choicesContainer).GetComponent<UnityEngine.UI.Button>();
+                var newButtom = Instantiate(buttonPrefab, choicesContainer).GetComponent<UnityEngine.UI.Button>();
                 newButtom.gameObject.SetActive(true);
                 poolButtons.Add(newButtom);
             }
@@ -48,6 +48,6 @@ public class QuestionController : MonoBehaviour
 
     public void giveButtomFunction(Dialogue dialog)
     {
-        DialogueManager.instance.SetDialogue(dialog);
+        DialogueManager.instance.SetDialogue(dialog, null);
     }
 }

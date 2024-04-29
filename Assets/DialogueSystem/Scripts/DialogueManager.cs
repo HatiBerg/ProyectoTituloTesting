@@ -6,6 +6,7 @@ using UnityEngine;
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance { get; private set; }
+    public static DialogueSpeaker actualSpeaker;
     [SerializeField] private DialogueUI diaUI;
     [SerializeField] private GameObject player;
 
@@ -26,10 +27,10 @@ public class DialogueManager : MonoBehaviour
         questionController = FindObjectOfType<QuestionController>();
     }
 
-
     private void Start()
     {
         UnlockPlayerController(false);
+        player.GetComponent<DialogueSpeaker>().Talk();
     }
 
     public void UnlockPlayerController(bool unlocked)
@@ -49,11 +50,18 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void SetDialogue(Dialogue dialog)
+    public void SetDialogue(Dialogue dialog, DialogueSpeaker speaker)
     {
-        diaUI.dialogue = dialog;
-        diaUI.lineIndex = 0;
-        diaUI.UpdateText(0);
+        if (speaker != null)
+        {
+            actualSpeaker = speaker;
+        }
+        else
+        {
+            diaUI.dialogue = dialog;
+            diaUI.lineIndex = 0;
+            diaUI.UpdateText(0);
+        }
         if (dialog.finalized && !dialog.reuse)
         {
             diaUI.dialogue = dialog;
