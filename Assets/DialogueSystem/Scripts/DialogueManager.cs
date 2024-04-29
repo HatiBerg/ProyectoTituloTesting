@@ -60,6 +60,12 @@ public class DialogueManager : MonoBehaviour
             diaUI.lineIndex = dialog.dialogues.Length;
             diaUI.UpdateText(1);
         }
+        else
+        {
+            diaUI.dialogue = dialog;
+            diaUI.lineIndex = actualSpeaker.dialogLineIndex;
+            diaUI.UpdateText(0);
+        }
     }
     
     public void ChangeReuseStatus(Dialogue dialog, bool reuseStatus)
