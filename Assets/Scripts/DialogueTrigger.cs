@@ -5,7 +5,7 @@ using Yarn.Unity;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueRunner dialogueRunner;
+    public DialogueRunner dialogueRunner = null;
     [SerializeField] private GameObject actionMark;
 
     private bool isPlayerInRange;
@@ -19,7 +19,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            dialogueRunner.StartDialogue("Soldier");
+            dialogueRunner.StartDialogue("Start");
         }
     }
 
