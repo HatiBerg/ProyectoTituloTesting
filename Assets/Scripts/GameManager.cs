@@ -5,11 +5,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance { get; private set; }
     public UnityEngine.UI.Image healthBar;
     public TMP_Text suspicion;
     public float actualHealth;
     public float maxHealth;
     public float suspicionLevel;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {

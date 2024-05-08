@@ -11,6 +11,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject player;
 
     public QuestionController questionController;
+    [HideInInspector] public bool didDialogueStart;
 
     private void Awake()
     {
@@ -31,7 +32,6 @@ public class DialogueManager : MonoBehaviour
     {
 
         UnlockPlayerController(false);
-        //player.GetComponent<DialogueSpeaker>().Talk();
     }
 
     public void UnlockPlayerController(bool unlocked)
@@ -42,12 +42,14 @@ public class DialogueManager : MonoBehaviour
             GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled = true;
+            didDialogueStart = false;
         }
         else 
         {
             GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
             GameObject.FindWithTag("Player").GetComponent<PlayerController>().enabled = false;
             GameObject.FindWithTag("Player").GetComponent<Animator>().SetBool("moving", false);
+            didDialogueStart = true;
         }
     }
 

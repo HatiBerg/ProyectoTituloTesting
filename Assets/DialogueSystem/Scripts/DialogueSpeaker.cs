@@ -21,7 +21,7 @@ public class DialogueSpeaker : MonoBehaviour
     }
     private void Update()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E) && !DialogueManager.instance.didDialogueStart)
         {
             Talk();
         }
