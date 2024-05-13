@@ -16,6 +16,9 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
 
+        //Animación de daño
+        gameObject.GetComponent<Animator>().SetTrigger("takeHit");
+
         if (currentHealth <= 0)
         {
             Die();
@@ -26,7 +29,10 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemigo muerto");
 
         // Animación de muerte
+        gameObject.GetComponent<Animator>().SetBool("isDead", true);
 
         // Desactivar o destruir al enemigo
+        GetComponent<Collider2D>().enabled = false;
+        this.enabled = false;
     }
 }
