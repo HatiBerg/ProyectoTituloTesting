@@ -6,9 +6,15 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    //private static GameObject player;
     bool cantJump;
+    bool inFall;
 
     void Start()
+    {
+        //player = GameObject.FindWithTag("Player");
+    }
+    void FixedUpdate()
     {
         
     }
@@ -17,7 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
     }
-
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Floor")
@@ -46,16 +52,16 @@ public class PlayerController : MonoBehaviour
             gameObject.GetComponent<Animator>().SetBool("moving", false);
         }
 
-        if (!Input.GetKey("w"))
-        {
-            gameObject.GetComponent<Animator>().SetTrigger("jumping");
-        }
-
         if (Input.GetKeyDown("w") && cantJump)
         {
             cantJump = false;
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 250f));
-            gameObject.GetComponent<Animator>().SetTrigger("jumping");
+            gameObject.GetComponent<Animator>().SetBool("jump", true);
+        }
+
+        if (cantJump)
+        {
+            gameObject.GetComponent<Animator>().SetBool("jump", false);
         }
     }
 }
