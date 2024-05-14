@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1516880584708152669}
   - component: {fileID: 3527357404786606630}
   m_Layer: 0
-  m_Name: Soldier
+  m_Name: NPCSoldier
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
