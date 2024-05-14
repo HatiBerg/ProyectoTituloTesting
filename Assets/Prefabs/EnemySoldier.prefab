@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7617759663547728995, guid: efe9ef291b5cb674db974b1e2702ce32, type: 3}
       propertyPath: m_Name
-      value: EnemySoldier Variant
+      value: EnemySoldier
       objectReference: {fileID: 0}
     - target: {fileID: 7617759663547728995, guid: efe9ef291b5cb674db974b1e2702ce32, type: 3}
       propertyPath: m_Layer
@@ -23,6 +23,10 @@ PrefabInstance:
     - target: {fileID: 7617759663547728995, guid: efe9ef291b5cb674db974b1e2702ce32, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7617759663547728995, guid: efe9ef291b5cb674db974b1e2702ce32, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7634918733757796469, guid: efe9ef291b5cb674db974b1e2702ce32, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -107,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c3a4193d092904997052d8bb56870f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hit: {fileID: 4097205531800818604}
+  hitSound: {fileID: 0}
   maxHealth: 100
   currentHealth: 0
 --- !u!82 &4097205531800818604
