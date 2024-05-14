@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Enemigo golpeado:" + enemy.name);
                     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
                 }
-
                 nextAttackTime = Time.time + 1f / attackRange;
             }
         }
