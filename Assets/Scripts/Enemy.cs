@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] AudioSource hit;
+    [SerializeField] AudioSource hitSound;
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
         // Animación de daño
         gameObject.GetComponent<Animator>().SetTrigger("takeHit");
         // Sonido
-        hit.Play();
+        hitSound.Play();
 
         if (currentHealth <= 0)
         {
