@@ -9,6 +9,7 @@ TagManager:
   - NPC
   - Suspicion
   - GameManager
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,9 +20,9 @@ TagManager:
   - Background
   - Floor
   - Wall
+  - Enemy
   - NPC
   - Player
-  - 
   - 
   - 
   - 
@@ -55,9 +56,12 @@ TagManager:
   - name: Wall
     uniqueID: 2393190061
     locked: 0
+  - name: Enemy
+    uniqueID: 4084385385
+    locked: 0
   - name: NPC
     uniqueID: 1349285301
     locked: 0
   - name: Player
-    uniqueID: 4084385385
+    uniqueID: 1237310073
     locked: 0

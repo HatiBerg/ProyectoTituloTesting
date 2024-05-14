@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] AudioSource hit;
     public int maxHealth = 100;
     public int currentHealth;
 
@@ -16,8 +17,10 @@ public class Enemy : MonoBehaviour
     {
         currentHealth -= damage;
 
-        //Animación de daño
+        // Animación de daño
         gameObject.GetComponent<Animator>().SetTrigger("takeHit");
+        // Sonido
+        hit.Play();
 
         if (currentHealth <= 0)
         {
@@ -31,8 +34,11 @@ public class Enemy : MonoBehaviour
         // Animación de muerte
         gameObject.GetComponent<Animator>().SetBool("isDead", true);
 
-        // Desactivar o destruir al enemigo
+        // Desactivar al enemigo
+
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         GetComponent<Collider2D>().enabled = false;
+        //GetComponent<BoxCollider2D>().enabled = false;
         this.enabled = false;
     }
 }
