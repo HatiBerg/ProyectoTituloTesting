@@ -33,9 +33,10 @@ public class Enemy : MonoBehaviour
 
         // Animación de muerte
         gameObject.GetComponent<Animator>().SetBool("isDead", true);
+        // Sonido de muerte
+
 
         // Desactivar al enemigo
-
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         GetComponent<Collider2D>().enabled = false;
         //GetComponent<BoxCollider2D>().enabled = false;
