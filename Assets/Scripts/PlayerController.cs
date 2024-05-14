@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
         Combat();
-
         attackPoint.localPosition = new Vector2(desiredAttackPosX, 0.03f);
     }
     
