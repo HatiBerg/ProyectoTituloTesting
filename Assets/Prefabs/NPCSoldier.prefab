@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1339861492476698955}
   - component: {fileID: 7634918733757796469}
   - component: {fileID: 1516880584708152669}
-  - component: {fileID: 3527357404786606630}
+  - component: {fileID: 9176205456303035063}
   m_Layer: 10
   m_Name: NPCSoldier
   m_TagString: NPC
@@ -218,7 +218,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.3804255, y: 3.9460268}
   m_EdgeRadius: 0.2
---- !u!114 &3527357404786606630
+--- !u!114 &9176205456303035063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
