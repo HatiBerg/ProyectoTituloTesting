@@ -21,7 +21,7 @@ public class DialogueUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && dialogueContainer.activeInHierarchy)
         {
             UpdateText(1);
         }
